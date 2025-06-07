@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proteksi Radiasi dalam Terapi Radiasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 15px 25px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 3px solid;
+            border-image: linear-gradient(45deg, #667eea, #764ba2) 1;
+            padding-bottom: 10px;
+        }
+        
+        .protection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        
+        .protection-item {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .protection-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .protection-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .case-study {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        
+        .case-study h4 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .therapy-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .step {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .radiation-icon {
+            font-size: 3rem;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .warning-box h4 {
+            color: #c92a2a;
+            margin-bottom: 10px;
+        }
+        
+        .dosage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dosage-table th, .dosage-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dosage-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .dosage-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Proteksi Radiasi dalam Terapi Radiasi</h1>
+            <p>Panduan Komprehensif Keselamatan Radiasi untuk Terapi Kanker</p>
+            <div style="margin-top: 20px; padding: 15px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%); border-radius: 15px; color: white;">
+                <h3 style="margin: 0; font-size: 1.2rem;">👨‍🎓 Dibuat oleh:</h3>
+                <p style="margin: 5px 0 0 0; font-size: 1.1rem; font-weight: bold;">Fransiskus Nebe Auni</p>
+            </div>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('overview')">Overview</button>
+            <button class="tab-btn" onclick="showTab('case-study')">Studi Kasus</button>
+            <button class="tab-btn" onclick="showTab('therapy-types')">Jenis Terapi</button>
+            <button class="tab-btn" onclick="showTab('protection')">Proteksi</button>
+            <button class="tab-btn" onclick="showTab('dosage')">Dosis & Monitoring</button>
+        </div>
+        
+        <div id="overview" class="tab-content active">
+            <div class="card">
+                <h3>🎯 Apa itu Terapi Radiasi?</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Terapi radiasi adalah penggunaan radiasi pengion berenergi tinggi untuk menghancurkan sel kanker dan mengecilkan tumor. Radiasi merusak DNA sel kanker, mencegah mereka berkembang biak dan akhirnya menyebabkan kematian sel.
+                </p>
+                
+                <div class="radiation-icon">⚛️</div>
+                
+                <div class="protection-grid">
+                    <div class="protection-item">
+                        <h4>🛡️ Prinsip ALARA</h4>
+                        <p>As Low As Reasonably Achievable - Menjaga paparan radiasi serendah mungkin</p>
+                    </div>
+                    <div class="protection-item">
+                        <h4>⏱️ Waktu</h4>
+                        <p>Minimalkan waktu paparan radiasi</p>
+                    </div>
+                    <div class="protection-item">
+                        <h4>📏 Jarak</h4>
+                        <p>Maksimalkan jarak dari sumber radiasi</p>
+                    </div>
+                    <div class="protection-item">
+                        <h4>🛡️ Perisai</h4>
+                        <p>Gunakan material pelindung yang sesuai</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="case-study" class="tab-content">
+            <div class="card">
+                <h3>🏥 Studi Kasus: Kanker Payudara Stadium II</h3>
+                
+                <div class="case-study">
+                    <h4>👩 Profil Pasien</h4>
+                    <p><strong>Nama:</strong> Ibu Sarah, 45 tahun</p>
+                    <p><strong>Diagnosis:</strong> Invasive Ductal Carcinoma (IDC) payudara kiri</p>
+                    <p><strong>Stadium:</strong> T2N1M0 (Stadium IIA)</p>
+                    <p><strong>Ukuran tumor:</strong> 3.2 cm</p>
+                    <p><strong>Status node:</strong> 2 kelenjar getah bening positif</p>
+                </div>
+                
+                <h4>📋 Rencana Terapi Radiasi</h4>
+                <div class="therapy-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h5>Simulasi & Planning</h5>
+                        <p>CT scan untuk perencanaan, pembuatan immobilization device</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h5>Target Volume</h5>
+                        <p>Whole breast + boost ke tumor bed + regional lymph nodes</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h5>Teknik</h5>
+                        <p>IMRT (Intensity Modulated Radiation Therapy)</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h5>Dosis</h5>
+                        <p>50 Gy dalam 25 fraksi + boost 10 Gy dalam 5 fraksi</p>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>⚠️ Organ at Risk (OAR)</h4>
+                    <p>Jantung, paru-paru, tulang rusuk, dan kulit perlu dilindungi dari paparan berlebihan</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="therapy-types" class="tab-content">
+            <div class="card">
+                <h3>🔬 Jenis-Jenis Terapi Radiasi</h3>
+                
+                <div class="therapy-steps">
+                    <div class="step">
+                        <h5>📡 External Beam Radiation Therapy (EBRT)</h5>
+                        <p><strong>Cara kerja:</strong> Radiasi diberikan dari luar tubuh menggunakan linear accelerator</p>
+                        <p><strong>Contoh:</strong> 3D-CRT, IMRT, VMAT, Stereotactic radiosurgery</p>
+                        <p><strong>Proteksi:</strong> Multi-leaf collimator, wedge filter, compensator</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h5>💊 Brachytherapy</h5>
+                        <p><strong>Cara kerja:</strong> Sumber radioaktif ditempatkan langsung di dalam atau dekat tumor</p>
+                        <p><strong>Contoh:</strong> HDR brachytherapy untuk kanker serviks, LDR untuk prostat</p>
+                        <p><strong>Proteksi:</strong> Remote afterloading, shielding room, time control</p>
+                    </div>
+                    
+                    <div class="step">
+                        <h5>💉 Radiopharmaceutical Therapy</h5>
+                        <p><strong>Cara kerja:</strong> Isotop radioaktif diberikan melalui injeksi atau oral</p>
+                        <p><strong>Contoh:</strong> I-131 untuk kanker tiroid, Ra-223 untuk metastasis tulang</p>
+                        <p><strong>Proteksi:</strong> Isolasi pasien, penanganan limbah radioaktif</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="protection" class="tab-content">
+            <div class="card">
+                <h3>🛡️ Sistem Proteksi Radiasi</h3>
+                
+                <h4>👨‍⚕️ Proteksi untuk Petugas Medis</h4>
+                <div class="protection-grid">
+                    <div class="protection-item">
+                        <h4>🦺 APD Radiologi</h4>
+                        <p>• Lead apron (0.25-0.5 mm Pb)<br>
+                        • Thyroid collar<br>
+                        • Lead gloves<br>
+                        • Protective eyewear</p>
+                    </div>
+                    <div class="protection-item">
+                        <h4>📱 Monitoring Personal</h4>
+                        <p>• TLD badge<br>
+                        • Electronic dosimeter<br>
+                        • Ring badge untuk tangan<br>
+                        • Eye lens dosimeter</p>
+                    </div>
+                    <div class="protection-item">
+                        <h4>🏗️ Engineering Controls</h4>
+                        <p>• Shielded treatment room<br>
+                        • Interlocking system<br>
+                        • Area monitoring<br>
+                        • Ventilation system</p>
+                    </div>
+                </div>
+                
+                <h4 style="margin-top: 30px;">👤 Proteksi untuk Pasien</h4>
+                <div class="therapy-steps">
+                    <div class="step">
+                        <h5>🎯 Treatment Planning</h5>
+                        <p>Optimalisasi dosis untuk target volume dengan meminimalkan dosis ke organ sehat</p>
+                    </div>
+                    <div class="step">
+                        <h5>🛡️ Shielding</h5>
+                        <p>Penggunaan blok timbal, MLC, dan compensator untuk melindungi organ kritis</p>
+                    </div>
+                    <div class="step">
+                        <h5>📊 Image Guidance</h5>
+                        <p>IGRT untuk memastikan akurasi posisi dan mengurangi margin keamanan</p>
+                    </div>
+                    <div class="step">
+                        <h5>⏱️ Fractionation</h5>
+                        <p>Pembagian dosis dalam beberapa fraksi untuk memberikan waktu pemulihan jaringan normal</p>
+                    </div>
+                </div>
+                
+                <div class="warning-box">
+                    <h4>🚨 Prosedur Darurat</h4>
+                    <p>Emergency stop, kontaminasi control, dan prosedur evakuasi harus selalu siap dan dipahami semua petugas</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="dosage" class="tab-content">
+            <div class="card">
+                <h3>📊 Dosis dan Monitoring Radiasi</h3>
+                
+                <table class="dosage-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Batas Dosis Tahunan</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Pekerja Radiasi</strong></td>
+                            <td>20 mSv/tahun</td>
+                            <td>Rata-rata selama 5 tahun, maksimal 50 mSv/tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lensa Mata</strong></td>
+                            <td>20 mSv/tahun</td>
+                            <td>Rata-rata selama 5 tahun, maksimal 50 mSv/tahun</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kulit & Ekstremitas</strong></td>
+                            <td>500 mSv/tahun</td>
+                            <td>Untuk tangan, kaki, dan kulit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Masyarakat Umum</strong></td>
+                            <td>1 mSv/tahun</td>
+                            <td>Batas paparan untuk anggota masyarakat</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Wanita Hamil</strong></td>
+                            <td>1 mSv selama kehamilan</td>
+                            <td>Khusus untuk pekerja radiasi yang hamil</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4>📈 Monitoring Program</h4>
+                <div class="therapy-steps">
+                    <div class="step">
+                        <h5>📅 Monitoring Rutin</h5>
+                        <p>• Pembacaan dosimeter bulanan<br>
+                        • Medical surveillance tahunan<br>
+                        • Training keselamatan radiasi</p>
+                    </div>
+                    <div class="step">
+                        <h5>📋 Dokumentasi</h5>
+                        <p>• Catatan paparan individu<br>
+                        • Laporan insiden radiasi<br>
+                        • Kalibrasi peralatan</p>
+                    </div>
+                    <div class="step">
+                        <h5>🔍 Quality Assurance</h5>
+                        <p>• Daily QA checks<br>
+                        • Monthly QA procedures<br>
+                        • Annual QA measurements</p>
+                    </div>
+                </div>
+                
+                <div class="case-study">
+                    <h4>💡 Tips Praktis Proteksi Radiasi</h4>
+                    <p><strong>1. Perencanaan yang baik:</strong> Selalu lakukan dry run sebelum treatment</p>
+                    <p><strong>2. Komunikasi tim:</strong> Pastikan semua anggota tim memahami prosedur</p>
+                    <p><strong>3. Maintenance rutin:</strong> Peralatan proteksi harus selalu dalam kondisi optimal</p>
+                    <p><strong>4. Education berkelanjutan:</strong> Update pengetahuan tentang teknologi terbaru</p>
+                </div>
+                
+                <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; color: white; text-align: center;">
+                    <h4 style="margin: 0 0 10px 0; color: white;">📝 Profil Pembuat</h4>
+                    <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                        <div style="text-align: left;">
+                            <p style="margin: 5px 0; font-size: 1.1rem;"><strong>👤 Nama:</strong> Fransiskus Nebe Auni</p>
+                            <p style="margin: 5px 0;"><strong>📅 Tanggal:</strong> 17 Juni 2025</p>
+                            <p style="margin: 5px 0;"><strong>🏥 Fokus:</strong> Radioterapi & QA/QC</p>
+                        </div>
+                        <div style="text-align: left;">
+                            <p style="margin: 5px 0;"><strong>🎯 Tujuan:</strong> Edukasi Keselamatan Radiasi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+        
+        // Add smooth scrolling for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.style.transform = 'translateY(20px)';
+                card.style.opacity = '0';
+                card.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.transform = 'translateY(0)';
+                    card.style.opacity = '1';
+                }, Math.random() * 500);
+            });
+        });
+    </script>
+</body>
+</html>
